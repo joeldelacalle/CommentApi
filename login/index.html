@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>Moviegoer Register/Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="inner-box" id="card">
+                <div class="card-front">
+                    <h2>Inicio de Sesi&oacuten</h2>
+                    <form> 
+                        <input type="email" class="input-box" placeholder="Escriba aqu&iacute su email" required>
+                        <input type="password" class="input-box" placeholder="Escriba aqu&iacute su contrase&ntilde;a" required>
+                        <button type="submit" class="submit-btn">Enviar</button>
+                        <input type="checkbox"><span>Recordarme</span>
+                    </form>
+                    <button type="button" class="btn" onclick="openRegistrarse()">Nuevo Usuario</button>
+                    <a href="">Contrase&ntildea Olvidada</a>
+                </div>
+                <div class="card-back">
+                    <h2>Registrarse</h2>
+                    <form>
+                        <input type="text" class="input-box" placeholder="Escriba su nombre" required> 
+                        <input type="email" class="input-box" placeholder="Escriba aqu&iacute su email" required>
+                        <input type="password" class="input-box" placeholder="Escriba aqu&iacute su contrase&ntilde;a" required>
+                        <button type="submit" class="submit-btn">Enviar</button>
+                        <input type="checkbox"><span>Recordarme</span>
+                    </form>
+                    <button type="button" class="btn" onclick="openSesion()">Ya tengo una cuenta</button>
+                    <a href="">Contrase&ntilde;a Olvidada</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var card = document.getElementById("card");
+
+        function openRegistrarse(){
+            card.style.transform = "rotateY(-180deg)";
+        }
+        function openSesion(){
+            card.style.transform = "rotateY(0deg)";
+        }
+    </script>
+</body>
+</html>

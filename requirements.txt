@@ -1,0 +1,9 @@
+
+pip install flask pymongo
+
+pip install Flask-PyMongo
+
+// Para instalar mongodb Compass
+https://www.mongodb.com/try/download/community 
+al instalarlo en localhost debemos introducir en el usuario nuestro nombre del equipo y en la contraseña la que tilizamos para acceder a nuestro pc
+Para iniciarlo debemos ejecutar mongod , de esta manera no consumirá recursos constantemente
