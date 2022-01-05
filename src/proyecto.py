@@ -4,28 +4,30 @@ from flask_pymongo import PyMongo
 from werkzeug.wrappers import response
 from bson import json_util
 from bson.objectid import ObjectId
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.config['MONGO_URI']='mongodb://localhost/moviegoer'
 mongo= PyMongo(app)
+CORS(app)
 
 @app.route('/comentarios', methods=['POST'])
 def create_comentario():
     #Recibe la información
    titulo = request.json['titulo']
-   estreno = request.json['estreno']
-   descripcion = request.json['descripcion']
+   nomUsuario = request.json['nomUsuario']
+   emailUsuario = request.json['emailUsuario']
    comentario = request.json['comentario']
 
-   if titulo and estreno and descripcion and comentario:
+   if titulo and nomUsuario and emailUsuario and comentario:
        id = mongo.db.comentarios.insert(
-           {'titulo': titulo, 'estreno': estreno, 'descripcion': descripcion, 'comentario': comentario}
+           {'titulo': titulo, 'nomUsuario': nomUsuario, 'emailUsuario': emailUsuario, 'comentario': comentario}
        )
        response ={
            'id': str(id),
             'titulo': titulo,
-            'estreno': estreno,
-            'descripcion' : descripcion,
+            'nomUsuario': nomUsuario,
+            'emailUsuario' : emailUsuario,
             'comentario': comentario
        }
        return response
@@ -35,7 +37,7 @@ def create_comentario():
    return {'message':'received'}
 
 @app.route('/comentarios', methods=['GET'])
-def get_comentario():
+def get_comentarios():
     comentarios = mongo.db.comentarios.find()
     response = json_util.dumps(comentarios)
     return Response(response, mimetype='application/json')
@@ -57,14 +59,14 @@ def delete_comentario(id):
 @app.route('/comentarios/<id>', methods=['PUT'])
 def update_comentario(id):
     titulo = request.json['titulo']
-    estreno = request.json['estreno']
-    descripcion = request.json['descripcion']
+    nomUsuario = request.json['nomUsuario']
+    emailUsuario = request.json['emailUsuario']
     comentario = request.json['comentario']
-    if titulo and estreno and descripcion and comentario:
+    if titulo and nomUsuario and emailUsuario and comentario:
         mongo.db.comentarios.update_one({'_id' : ObjectId(id)}, {'$set': {
            'titulo': titulo,
-           'estreno': estreno,
-           'descripcion': descripcion,
+           'nomUsuario': nomUsuario,
+           'emailUsuario': emailUsuario,
            'comentario': comentario
         }})
     response = jsonify({
