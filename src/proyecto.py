@@ -15,17 +15,19 @@ CORS(app)
 def create_comentario():
     #Recibe la información
    titulo = request.json['titulo']
+   idPelicula = request.json['idPelicula']
    nomUsuario = request.json['nomUsuario']
    emailUsuario = request.json['emailUsuario']
    comentario = request.json['comentario']
 
-   if titulo and nomUsuario and emailUsuario and comentario:
+   if titulo and idPelicula and nomUsuario and emailUsuario and comentario:
        id = mongo.db.comentarios.insert(
-           {'titulo': titulo, 'nomUsuario': nomUsuario, 'emailUsuario': emailUsuario, 'comentario': comentario}
+           {'titulo': titulo, 'idPelicula': str(idPelicula), 'nomUsuario': nomUsuario, 'emailUsuario': emailUsuario, 'comentario': comentario}
        )
        response ={
-           'id': str(id),
+            'id': str(id),
             'titulo': titulo,
+            'idPelicula': str(idPelicula), 
             'nomUsuario': nomUsuario,
             'emailUsuario' : emailUsuario,
             'comentario': comentario
@@ -43,8 +45,8 @@ def get_comentarios():
     return Response(response, mimetype='application/json')
 
 @app.route('/comentarios/<id>', methods=['GET'])
-def get_comentario(id):
-    comentario = mongo.db.comentarios.find_one({'_id': ObjectId(id)})
+def get_comentarioPelicula(id):
+    comentario = mongo.db.comentarios.find({'idPelicula': str(id)})
     response = json_util.dumps(comentario)
     return Response(response, mimetype='application/json')
 
