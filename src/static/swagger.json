@@ -1,0 +1,75 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "description": "sean",
+      "version": "1.0.0",
+      "title": "PROYECTO",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "tags": [
+        {
+          "name": "Comentarios Request",
+          "description": "Example API for requesting and return book requests"
+        }
+      ],
+      "paths": {
+        "/comentarios": {
+            "get": {
+              "tags": [
+                "Comentarios Request"
+              ],
+              "summary": "Returns comentariosRequests",
+              "responses": {
+                "200": {
+                  "description": "OK",
+                  "schema": {
+                    "$ref": "#/components/schemas/comentariosRequests"
+                  }
+                }
+              }
+            }
+        }
+      },
+      "components": {
+        "schemas": {
+          "id": {
+            "properties": {
+              "uuid": {
+                "type": "string"
+              }
+            }
+          },
+          "comentariosRequest": {
+            "type": "object",
+            "properties": {
+              "titulo": {
+                "type": "string",
+                "format": "string"
+              },
+              "idPelicula": {
+                "type": "string",
+                "format": "string"
+              },
+              "nomUsuario": {
+                "type": "string",
+                "format": "string"
+              },
+              "emailUsuario": {
+                "type": "string",
+                "format": "string"
+              },
+              "comentario": {
+                "type": "string",
+                "format": "string"
+              }
+            }
+          }
+          
+        }
+      } 
+}   
+    
+  
