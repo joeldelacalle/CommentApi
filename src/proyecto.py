@@ -8,7 +8,7 @@ from bson import json_util
 from bson.objectid import ObjectId
 from flask_cors import CORS
 
-REQUEST_API = Blueprint('request_api', __name__)
+#REQUEST_API = Blueprint('request_api', __name__)
 
 app = Flask(__name__)
 app.config['MONGO_URI']='mongodb://localhost/moviegoer'
@@ -32,7 +32,7 @@ app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
 app.register_blueprint(request_api.get_blueprint())
 
 @app.route('/comentarios', methods=['POST'])
-@REQUEST_API.route('/comentarios', methods=['POST'])
+#@REQUEST_API.route('/comentarios', methods=['POST'])
 def create_comentario():
     #Recibe la información
    titulo = request.json['titulo']
@@ -53,14 +53,14 @@ def create_comentario():
             'emailUsuario' : emailUsuario,
             'comentario': comentario
        }
-       return jsonify(response)
+       return response
    else:
         return not_found()
 
    return {'message':'received'}
 
 @app.route('/comentarios', methods=['GET'])
-@REQUEST_API.route('/comentarios', methods=['GET'])
+#@REQUEST_API.route('/comentarios', methods=['GET'])
 def get_comentarios():
     comentarios = mongo.db.comentarios.find()
     response = json_util.dumps(comentarios)

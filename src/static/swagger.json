@@ -24,51 +24,38 @@
               "summary": "Returns comentariosRequests",
               "responses": {
                 "200": {
-                  "description": "OK",
+                  "description": "List of comments",
                   "schema": {
-                    "$ref": "#/components/schemas/comentariosRequests"
+                    "type": "array",
+                    "items": {
+                      "properties":{
+                        "titulo": {
+                          "type": "string",
+                          "format": "string"
+                        },
+                        "idPelicula": {
+                          "type": "string",
+                          "format": "string"
+                        },
+                        "nomUsuario": {
+                          "type": "string",
+                          "format": "string"
+                        },
+                        "emailUsuario": {
+                          "type": "string",
+                          "format": "string"
+                        },
+                        "comentario": {
+                          "type": "string",
+                          "format": "string"
+                        }
+                      }
+                    }
                   }
                 }
               }
             }
-        }
-      },
-      "components": {
-        "schemas": {
-          "id": {
-            "properties": {
-              "uuid": {
-                "type": "string"
-              }
-            }
-          },
-          "comentariosRequest": {
-            "type": "object",
-            "properties": {
-              "titulo": {
-                "type": "string",
-                "format": "string"
-              },
-              "idPelicula": {
-                "type": "string",
-                "format": "string"
-              },
-              "nomUsuario": {
-                "type": "string",
-                "format": "string"
-              },
-              "emailUsuario": {
-                "type": "string",
-                "format": "string"
-              },
-              "comentario": {
-                "type": "string",
-                "format": "string"
-              }
-            }
-          }
-          
-        }
+          }   
       } 
 }   
     
